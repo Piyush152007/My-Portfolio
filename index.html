@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PIYUSH GURJAR • Living Pixel-Art Portfolio World</title>
+  <meta name="description" content="A portfolio disguised as a tiny living pixel-art world. Actor, Filmmaker, Storyteller, Writer, Badminton Player, and 1st-Year B.Tech CSE Core Student at JECRC University (Class of 2030).">
+
+  <!-- Tailwind CSS CDN for utility grid & layout -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom Pixel Art & Game Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-950 text-slate-100 selection:bg-sky-500 selection:text-white">
+
+  <!-- =========================================================================
+       RETRO GAME HUD (Sticky Top Header)
+       ========================================================================= -->
+  <header class="retro-hud px-4 py-2.5">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      
+      <!-- Player Identity & Health Gauges -->
+      <div class="flex items-center gap-4">
+        <a href="#home" class="meteor-trigger flex items-center gap-2 group" data-section="home">
+          <span class="w-8 h-8 rounded bg-blue-900 border-2 border-sky-400 flex items-center justify-center font-pixel text-xs text-sky-300 shadow-[0_0_10px_rgba(56,189,248,0.5)] group-hover:scale-105 transition-transform">
+            PG
+          </span>
+          <div class="hidden sm:block">
+            <h1 class="font-pixel text-[11px] text-white tracking-tight flex items-center gap-1.5">
+              PIYUSH GURJAR
+              <span class="text-[9px] font-mono text-amber-400 bg-amber-950/80 px-1.5 py-0.2 rounded border border-amber-500/40">LVL 1 • CSE CORE</span>
+            </h1>
+            <p class="text-[9px] font-mono text-sky-300/70">JECRC UNIV '30 • STORYTELLER</p>
+          </div>
+        </a>
+
+        <!-- Living Energy Bars -->
+        <div class="hidden md:flex items-center gap-3 pl-3 border-l border-blue-900/60">
+          <div class="hud-bar-container">
+            <span class="hud-bar-label">SOUL</span>
+            <div class="hud-bar" title="Story Inspiration: 100%">
+              <div class="hud-bar-fill w-full"></div>
+            </div>
+          </div>
+          <div class="hud-bar-container">
+            <span class="hud-bar-label text-amber-400">MANA</span>
+            <div class="hud-bar border-amber-400" title="Creative Drive: 100%">
+              <div class="hud-bar-fill hud-bar-mana w-full"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop Navigation Bar (Meteor Triggers) -->
+      <nav class="hidden lg:flex items-center gap-1 bg-slate-900/80 p-1 rounded border border-blue-900/80">
+        <button class="nav-pixel-btn active" data-section="home">Home</button>
+        <button class="nav-pixel-btn" data-section="about">About Me</button>
+        <button class="nav-pixel-btn" data-section="skills">Skills</button>
+        <button class="nav-pixel-btn" data-section="work">My World</button>
+        <button class="nav-pixel-btn" data-section="guestbook">Guestbook</button>
+        <button class="nav-pixel-btn" data-section="contact">Contact</button>
+      </nav>
+
+      <!-- System Controls: Sound & Motion & Mobile Menu -->
+      <div class="flex items-center gap-2">
+        <!-- 8-Bit Audio Toggle -->
+        <button id="sound-toggle-btn" class="pixel-btn text-[10px] py-1.5 px-2.5 bg-blue-950 border-sky-500/50 hover:border-sky-400 text-sky-300" title="Toggle 8-bit Sound FX">
+          <span>🔊</span>
+          <span class="hidden sm:inline font-mono">SOUND:</span>
+          <span id="sound-status-text" class="font-mono font-bold text-sky-400">ON</span>
+        </button>
+
+        <!-- Reduced Motion Toggle -->
+        <button id="motion-toggle-btn" class="hidden sm:inline-flex pixel-btn text-[10px] py-1.5 px-2.5 bg-slate-900 border-slate-700 text-slate-300 hover:text-white" title="Toggle Reduced Motion">
+          <span>⚡</span>
+          <span id="motion-status-text" class="font-mono">NORMAL</span>
+        </button>
+
+        <!-- Mobile Drawer Toggle -->
+        <button id="mobile-menu-btn" class="lg:hidden pixel-btn text-xs py-1.5 px-2.5" aria-label="Toggle Navigation Menu">
+          ☰
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-nav-drawer" class="hidden lg:hidden mt-2 pt-2 border-t border-blue-900/60 bg-slate-950/95 p-3 rounded">
+      <div class="grid grid-cols-2 gap-2 text-center">
+        <button class="nav-pixel-btn w-full" data-section="home">Home</button>
+        <button class="nav-pixel-btn w-full" data-section="about">About Me</button>
+        <button class="nav-pixel-btn w-full" data-section="skills">Skills</button>
+        <button class="nav-pixel-btn w-full" data-section="work">My World</button>
+        <button class="nav-pixel-btn w-full" data-section="guestbook">Guestbook</button>
+        <button class="nav-pixel-btn w-full" data-section="contact">Contact</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       SECTION 1: HOME (LIVING PIXEL-ART WORLD)
+       ========================================================================= -->
+  <section id="home" class="portfolio-section relative">
+    
+    <!-- Living Pixel Canvas Engine -->
+    <div class="hero-canvas-container">
+      <canvas id="hero-pixel-canvas"></canvas>
+      
+      <!-- Interactive Sky Tooltip -->
+      <div class="sky-click-hint">
+        <span>✨ CLICK SKY TO SHOOT A STAR</span>
+      </div>
+
+      <!-- Hero Overlay Content -->
+      <div class="hero-overlay">
+        <div class="max-w-6xl mx-auto w-full">
+          
+          <!-- Pikachu Interactive Companion (Home Zone) -->
+          <div class="flex justify-end mb-2">
+            <div id="pokemon-pikachu" class="pokemon-companion-box" title="Click Pikachu repeatedly to awaken its electric power!">
+              <div class="pokemon-speech font-pixel">Pika? Click me!</div>
+              <div class="pokemon-sprite stage-0">
+                <!-- Retro Pixel Pikachu SVG -->
+                <svg viewBox="0 0 64 64" class="w-14 h-14" style="image-rendering: pixelated;">
+                  <!-- Ears with black tips -->
+                  <polygon points="12,4 18,16 10,14" fill="#1e293b"/>
+                  <polygon points="18,16 26,26 14,24" fill="#facc15"/>
+                  <polygon points="52,4 46,16 54,14" fill="#1e293b"/>
+                  <polygon points="46,16 38,26 50,24" fill="#facc15"/>
+                  <!-- Body & Head -->
+                  <rect x="20" y="22" width="24" height="22" rx="4" fill="#facc15"/>
+                  <rect x="22" y="38" width="20" height="18" rx="4" fill="#eab308"/>
+                  <!-- Eyes -->
+                  <rect x="24" y="28" width="4" height="4" fill="#0f172a"/>
+                  <rect x="25" y="28" width="2" height="2" fill="#ffffff"/>
+                  <rect x="36" y="28" width="4" height="4" fill="#0f172a"/>
+                  <rect x="37" y="28" width="2" height="2" fill="#ffffff"/>
+                  <!-- Rosy Cheeks -->
+                  <rect x="20" y="33" width="4" height="4" fill="#ef4444"/>
+                  <rect x="40" y="33" width="4" height="4" fill="#ef4444"/>
+                  <!-- Nose & Mouth -->
+                  <rect x="31" y="31" width="2" height="1" fill="#0f172a"/>
+                  <path d="M30,34 Q32,36 34,34" stroke="#0f172a" stroke-width="1.5" fill="none"/>
+                  <!-- Lightning Tail -->
+                  <polygon points="42,48 54,42 48,36 58,30 48,46" fill="#facc15" stroke="#ca8a04" stroke-width="1"/>
+                  <!-- Feet -->
+                  <rect x="24" y="54" width="6" height="3" fill="#eab308"/>
+                  <rect x="34" y="54" width="6" height="3" fill="#eab308"/>
+                </svg>
+              </div>
+              <div class="pokemon-dots">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+              <span class="text-[8px] font-pixel text-amber-300 mt-1">PIKACHU • LVL 12</span>
+            </div>
+          </div>
+
+          <!-- Hero Identity Block -->
+          <div class="space-y-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-blue-950/80 border border-sky-500/40 text-sky-300 text-xs font-mono">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <span>1st-Year B.Tech CSE Core • JECRC University, Jaipur (Class of 2030)</span>
+            </div>
+
+            <h2 class="pixel-hero-title">PIYUSH GURJAR</h2>
+
+            <!-- Multidisciplinary Identity Badges -->
+            <div class="flex flex-wrap gap-2">
+              <span class="identity-badge">🎭 Actor</span>
+              <span class="identity-badge">🎬 Filmmaker</span>
+              <span class="identity-badge">📖 Storyteller</span>
+              <span class="identity-badge">✍️ Writer</span>
+              <span class="identity-badge">🏸 Badminton Player</span>
+              <span class="identity-badge">💻 CS Student</span>
+            </div>
+
+            <!-- Deep Meaningful Quote -->
+            <div class="pixel-quote-card max-w-3xl">
+              <p class="text-slate-200 text-sm sm:text-base font-sans italic leading-relaxed">
+                "Stories are the vessels through which we touch the infinite—whether carved through the lens of a camera, the silence of a stage, the precision of a smash on the court, or the quiet elegance of code."
+              </p>
+              <p class="text-right text-xs font-retro text-amber-400 mt-2">
+                — Piyush Gurjar
+              </p>
+            </div>
+
+            <!-- Action Meteor Triggers -->
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <button class="pixel-btn pixel-btn-accent text-xs meteor-trigger" data-section="work">
+                <span>🚀</span> Explore My World
+              </button>
+              <button class="pixel-btn pixel-btn-gold text-xs meteor-trigger" data-section="guestbook">
+                <span>✨</span> Leave a Note in Guestbook
+              </button>
+              <button class="pixel-btn text-xs meteor-trigger" data-section="about">
+                <span>📖</span> Read My Story
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 2: ABOUT ME (THE STORYTELLER'S JOURNEY)
+       ========================================================================= -->
+  <section id="about" class="portfolio-section py-16 px-4 max-w-6xl mx-auto">
+    
+    <!-- Section Header with Companion -->
+    <div class="flex items-center justify-between flex-wrap gap-4 mb-10 pb-4 border-b-2 border-blue-900/60">
+      <div>
+        <span class="font-pixel text-[10px] text-sky-400 tracking-wider uppercase">Profile Dossier // 01</span>
+        <h2 class="font-pixel text-2xl sm:text-3xl text-white mt-1">ABOUT ME</h2>
+        <p class="text-slate-400 text-sm mt-1">The intersection of theatre, cinema, athletic grit, and algorithms.</p>
+      </div>
+
+      <!-- Bulbasaur Interactive Companion (About Zone) -->
+      <div id="pokemon-bulbasaur" class="pokemon-companion-box" title="Click Bulbasaur to summon Vine Whips & Solar Beam!">
+        <div class="pokemon-speech font-pixel">Bulba-saur!</div>
+        <div class="pokemon-sprite stage-0">
+          <!-- Retro Pixel Bulbasaur SVG -->
+          <svg viewBox="0 0 64 64" class="w-14 h-14" style="image-rendering: pixelated;">
+            <!-- Plant Bulb on back -->
+            <polygon points="32,8 20,24 44,24" fill="#15803d"/>
+            <polygon points="32,4 26,18 38,18" fill="#22c55e"/>
+            <!-- Body -->
+            <rect x="18" y="24" width="28" height="22" rx="6" fill="#14b8a6"/>
+            <!-- Spots -->
+            <rect x="22" y="28" width="5" height="4" fill="#0d9488"/>
+            <rect x="36" y="34" width="6" height="5" fill="#0d9488"/>
+            <!-- Head & Red Eyes -->
+            <rect x="20" y="20" width="24" height="16" rx="4" fill="#2dd4bf"/>
+            <rect x="24" y="24" width="4" height="4" fill="#ef4444"/>
+            <rect x="25" y="24" width="2" height="2" fill="#ffffff"/>
+            <rect x="36" y="24" width="4" height="4" fill="#ef4444"/>
+            <rect x="37" y="24" width="2" height="2" fill="#ffffff"/>
+            <!-- Cheerful smile -->
+            <path d="M28,31 Q32,34 36,31" stroke="#0f172a" stroke-width="1.5" fill="none"/>
+            <!-- Feet -->
+            <rect x="18" y="44" width="7" height="6" fill="#0f766e"/>
+            <rect x="39" y="44" width="7" height="6" fill="#0f766e"/>
+          </svg>
+        </div>
+        <div class="pokemon-dots">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+        <span class="text-[8px] font-pixel text-emerald-400 mt-1">BULBASAUR • LVL 10</span>
+      </div>
+    </div>
+
+    <!-- About Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+      
+      <!-- Left 2 Cols: The Narrative Journey -->
+      <div class="lg:col-span-2 space-y-6">
+        
+        <div class="pixel-card p-6">
+          <h3 class="font-retro text-lg text-sky-300 mb-3 flex items-center gap-2">
+            <span>🎭</span> The Heart of a Storyteller
+          </h3>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-4 font-sans">
+            I have always believed that life speaks in whispers—in the subtle flicker of an actor's eye before they deliver a line, in the golden hour light spilling across an empty street, in the resonant crack of a shuttlecock, or in the silent logic of an algorithm waiting to compile.
+          </p>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-sans">
+            Whether I am on stage immersing myself into a character's shoes, drafting a screenplay late at night, diving across the badminton court on match point, or architecting a software module, the core driving force is identical: <strong class="text-white">curating genuine emotion, discipline, and unforgettable moments.</strong>
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+          <!-- Pillar 1: Theatre & Cinema -->
+          <div class="pixel-card p-5 border-indigo-700/80">
+            <div class="text-2xl mb-2">🎬</div>
+            <h4 class="font-retro text-white text-sm mb-1">The Stage & The Lens</h4>
+            <p class="text-xs text-slate-300 leading-relaxed font-sans">
+              Acting is my pursuit of raw human truth. Stepping into another soul's skin taught me deep empathy. Filmmaking naturally followed: crafting visual compositions where silence speaks louder than words.
+            </p>
+          </div>
+
+          <!-- Pillar 2: Badminton -->
+          <div class="pixel-card p-5 border-amber-700/80">
+            <div class="text-2xl mb-2">🏸</div>
+            <h4 class="font-retro text-white text-sm mb-1">The Court of Discipline</h4>
+            <p class="text-xs text-slate-300 leading-relaxed font-sans">
+              On the badminton court, everything condenses down to instinct, geometry, and relentless stamina. Badminton instilled in me mental composure under pressure, quick tactical shifts, and athletic tenacity.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Pillar 3: CSE Core & Tech -->
+        <div class="pixel-card p-6 border-cyan-800/80">
+          <h3 class="font-retro text-lg text-cyan-300 mb-2 flex items-center gap-2">
+            <span>💻</span> The Digital Canvas (B.Tech CSE Core)
+          </h3>
+          <p class="text-slate-300 text-sm leading-relaxed font-sans">
+            As a 1st-year Computer Science Engineering student at <strong class="text-sky-200">JECRC University (Class of 2030)</strong>, code to me isn't just lines in a terminal—it is an interactive medium of art. Building creative web experiences, retro canvas engines, and exploring algorithmic problem-solving allows engineering and imagination to walk side by side.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Right Col: Academic Dossier & Stats Cartridge -->
+      <div class="space-y-6">
+        
+        <!-- Academic Credentials Card -->
+        <div class="pixel-card pixel-card-gold p-5">
+          <div class="flex items-center justify-between pb-3 mb-3 border-b border-amber-900/60">
+            <span class="font-pixel text-[10px] text-amber-400">STATUS BADGE</span>
+            <span class="text-xs">🎓</span>
+          </div>
+
+          <h4 class="font-pixel text-xs text-white leading-snug">JECRC UNIVERSITY</h4>
+          <p class="text-xs font-mono text-amber-300/80 mt-1">Jaipur, Rajasthan, India</p>
+
+          <div class="mt-4 pt-3 border-t border-slate-800 space-y-2 text-xs font-mono">
+            <div class="flex justify-between">
+              <span class="text-slate-400">Degree:</span>
+              <span class="text-white font-bold">B.Tech CSE Core</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-400">Current Standing:</span>
+              <span class="text-sky-300 font-bold">1st Year Student</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-400">Graduation:</span>
+              <span class="text-amber-400 font-bold">Class of 2030</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-slate-400">Focus:</span>
+              <span class="text-emerald-300">Software & Story</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Stats Grid -->
+        <div class="grid grid-cols-2 gap-3">
+          <div class="pixel-card p-3 text-center">
+            <div class="font-pixel text-xl text-sky-400">Year 1</div>
+            <div class="text-[10px] font-mono text-slate-400 mt-1">CSE CORE</div>
+          </div>
+          <div class="pixel-card p-3 text-center">
+            <div class="font-pixel text-xl text-amber-400">2030</div>
+            <div class="text-[10px] font-mono text-slate-400 mt-1">GRAD BATCH</div>
+          </div>
+          <div class="pixel-card p-3 text-center">
+            <div class="font-pixel text-xl text-emerald-400">6+</div>
+            <div class="text-[10px] font-mono text-slate-400 mt-1">CREATIVE REALMS</div>
+          </div>
+          <div class="pixel-card p-3 text-center">
+            <div class="font-pixel text-xl text-rose-400">100%</div>
+            <div class="text-[10px] font-mono text-slate-400 mt-1">HONEST PASSION</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SECTION 3: SKILLS (ACTIVE PASSIONS & CURRENTLY LOADING)
+       ========================================================================= -->
+  <section id="skills" class="portfolio-section py-16 px-4 max-w-6xl mx-auto bg-slate-900/30 rounded-xl my-8 border border-blue-900/40">
+    
+    <!-- Section Header with Companion -->
+    <div class="flex items-center justify-between flex-wrap gap-4 mb-10 pb-4 border-b-2 border-blue-900/60">
+      <div>
+        <span class="font-pixel text-[10px] text-sky-400 tracking-wider uppercase">Skill Matrix // 02</span>
+        <h2 class="font-pixel text-2xl sm:text-3xl text-white mt-1">SKILLS & ACTIVE QUESTS</h2>
+        <p class="text-slate-400 text-sm mt-1">Divided into crafts I actively practice and technical skills currently compiling.</p>
+      </div>
+
+      <!-- Squirtle Interactive Companion (Skills Zone) -->
+      <div id="pokemon-squirtle" class="pokemon-companion-box" title="Click Squirtle for sunglasses gleam, bubble beam & Hydro Pump!">
+        <div class="pokemon-speech font-pixel">Squirtle-squirt!</div>
+        <div class="pokemon-sprite stage-0">
+          <!-- Retro Pixel Squirtle SVG with Sunglasses -->
+          <svg viewBox="0 0 64 64" class="w-14 h-14" style="image-rendering: pixelated;">
+            <!-- Shell on back -->
+            <polygon points="40,24 54,28 50,48 38,44" fill="#78350f"/>
+            <polygon points="42,28 50,30 48,42 40,40" fill="#b45309"/>
+            <!-- Body & Head -->
+            <rect x="20" y="24" width="24" height="22" rx="5" fill="#38bdf8"/>
+            <rect x="22" y="18" width="22" height="16" rx="4" fill="#7dd3fc"/>
+            <!-- Cool Pixel Sunglasses -->
+            <polygon points="18,22 32,22 30,28 20,28" fill="#0f172a"/>
+            <polygon points="34,22 48,22 46,28 36,28" fill="#0f172a"/>
+            <line x1="30" y1="23" x2="34" y2="23" stroke="#0f172a" stroke-width="2"/>
+            <rect x="22" y="24" width="3" height="2" fill="#38bdf8"/> <!-- Lens glare -->
+            <rect x="38" y="24" width="3" height="2" fill="#38bdf8"/>
+            <!-- Smile -->
+            <path d="M28,31 Q33,34 38,31" stroke="#0284c7" stroke-width="1.5" fill="none"/>
+            <!-- Belly pattern -->
+            <rect x="24" y="34" width="14" height="12" rx="2" fill="#fef08a"/>
+            <!-- Tail -->
+            <path d="M44,42 Q52,42 50,36 Q46,34 42,38" fill="#38bdf8"/>
+            <!-- Feet -->
+            <rect x="22" y="46" width="6" height="5" fill="#0284c7"/>
+            <rect x="34" y="46" width="6" height="5" fill="#0284c7"/>
+          </svg>
+        </div>
+        <div class="pokemon-dots">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+        <span class="text-[8px] font-pixel text-sky-400 mt-1">SQUIRTLE • LVL 11</span>
+      </div>
+    </div>
+
+    <!-- 1. CATEGORY: THINGS I LOVE / ACTIVELY DO -->
+    <div class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="px-3 py-1 bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 font-pixel text-[10px] rounded">
+          LEVEL: MASTERY IN PROGRESS
+        </span>
+        <h3 class="font-retro text-xl text-white tracking-wide">Things I Love / Actively Do</h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Skill 1: Acting -->
+        <div class="pixel-card p-6 border-indigo-500/60 hover:border-indigo-400 flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <span class="text-3xl">🎭</span>
+              <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">
+                DRAMATIC ARTS
+              </span>
+            </div>
+            <h4 class="font-pixel text-sm text-white mb-2">ACTING</h4>
+            <p class="text-xs text-slate-300 leading-relaxed font-sans mb-4">
+              Immersive character embodiment, monologue projection, emotional vulnerability, and stage presence. Trained in method observation and communicating profound subtext through quiet expressions.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-indigo-950/80 flex flex-wrap gap-1.5">
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Method Acting</span>
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Monologues</span>
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Stage Presence</span>
+          </div>
+        </div>
+
+        <!-- Skill 2: Badminton -->
+        <div class="pixel-card p-6 border-amber-500/60 hover:border-amber-400 flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <span class="text-3xl">🏸</span>
+              <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800">
+                ATHLETIC GRIT
+              </span>
+            </div>
+            <h4 class="font-pixel text-sm text-white mb-2">BADMINTON</h4>
+            <p class="text-xs text-slate-300 leading-relaxed font-sans mb-4">
+              Attacking smash technique, court spatial vision, rapid footwork, and high-intensity stamina. The badminton court is my sanctuary of discipline—teaching mental composure and swift tactical transitions.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-amber-950/80 flex flex-wrap gap-1.5">
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Smash Power</span>
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Court Agility</span>
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Match Tactics</span>
+          </div>
+        </div>
+
+        <!-- Skill 3: Writing -->
+        <div class="pixel-card p-6 border-sky-500/60 hover:border-sky-400 flex flex-col justify-between">
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <span class="text-3xl">✍️</span>
+              <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-sky-950 text-sky-300 border border-sky-800">
+                NARRATIVE CRAFT
+              </span>
+            </div>
+            <h4 class="font-pixel text-sm text-white mb-2">WRITING</h4>
+            <p class="text-xs text-slate-300 leading-relaxed font-sans mb-4">
+              Screenplays, character arcs, evocative prose, theatrical dialogues, and world-building. Striving to capture the delicate space between vulnerability and courage, memory and hope.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-sky-950/80 flex flex-wrap gap-1.5">
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Screenwriting</span>
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Dialogue</span>
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Story Arcs</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2. CATEGORY: CURRENTLY LOADING / IN PROGRESS -->
+    <div>
+      <div class="flex items-center gap-3 mb-6">
+        <span class="px-3 py-1 bg-amber-950/80 border border-amber-500/50 text-amber-300 font-pixel text-[10px] rounded animate-pulse">
+          STATUS: COMPILING / ACTIVE STUDY
+        </span>
+        <h3 class="font-retro text-xl text-white tracking-wide">Currently Loading / In Progress</h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Loading 1: Video Editing -->
+        <div class="pixel-card p-6 border-blue-600/60">
+          <div class="flex items-center justify-between gap-3 mb-4">
+            <div class="flex items-center gap-3">
+              <span class="text-3xl">🎞️</span>
+              <div>
+                <h4 class="font-pixel text-sm text-white">VIDEO EDITING</h4>
+                <p class="text-[11px] font-mono text-sky-300">Level 1 • Curious Apprentice</p>
+              </div>
+            </div>
+            <span class="font-pixel text-xs text-sky-400 bg-blue-950 px-2.5 py-1 rounded border border-sky-500/40">
+              68%
+            </span>
+          </div>
+
+          <!-- Animated Pixel Loading Bar -->
+          <div class="pixel-loading-container mb-3">
+            <div class="pixel-loading-bar" style="width: 68%;"></div>
+          </div>
+
+          <p class="text-xs font-mono text-amber-300 mb-3 flex items-center gap-1.5">
+            <span class="animate-spin text-sm">⚙️</span>
+            Rendering cuts & color grades...
+          </p>
+
+          <p class="text-xs text-slate-300 font-sans leading-relaxed mb-4">
+            Learning the delicate rhythm of pacing, Premiere Pro & DaVinci Resolve workflows, J/L cuts, atmospheric sound synchronization, and mood color grading. Still honing my craft with every project cut!
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-800">
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Premiere Pro</span>
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">DaVinci Resolve</span>
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Pacing & Cuts</span>
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Sound Sync</span>
+          </div>
+        </div>
+
+        <!-- Loading 2: Coding (1st Year B.Tech CSE Core) -->
+        <div class="pixel-card p-6 border-blue-600/60">
+          <div class="flex items-center justify-between gap-3 mb-4">
+            <div class="flex items-center gap-3">
+              <span class="text-3xl">💻</span>
+              <div>
+                <h4 class="font-pixel text-sm text-white">CODING</h4>
+                <p class="text-[11px] font-mono text-sky-300">Level 1 • 1st-Year B.Tech CSE Core</p>
+              </div>
+            </div>
+            <span class="font-pixel text-xs text-amber-400 bg-amber-950 px-2.5 py-1 rounded border border-amber-500/40">
+              54%
+            </span>
+          </div>
+
+          <!-- Animated Pixel Loading Bar -->
+          <div class="pixel-loading-container mb-3">
+            <div class="pixel-loading-bar" style="width: 54%; background: repeating-linear-gradient(-45deg, #d97706, #d97706 8px, #f59e0b 8px, #f59e0b 16px);"></div>
+          </div>
+
+          <p class="text-xs font-mono text-amber-300 mb-3 flex items-center gap-1.5">
+            <span class="animate-spin text-sm">⚙️</span>
+            Compiling core foundations... (Class of 2030)
+          </p>
+
+          <p class="text-xs text-slate-300 font-sans leading-relaxed mb-4">
+            Mastering C/C++, Python basics, data structures, and algorithmic logic at JECRC University, while crafting interactive web canvas worlds. No fake senior claims—just pure hunger to build impactful software.
+          </p>
+
+          <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-800">
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">C / C++</span>
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Python</span>
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Data Structures</span>
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Web Canvas</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- =========================================================================
+       SECTION 4: MY WORLD / WORK & INTERESTS
+       ========================================================================= -->
+  <section id="work" class="portfolio-section py-16 px-4 max-w-6xl mx-auto">
+    
+    <!-- Section Header with Companion -->
+    <div class="flex items-center justify-between flex-wrap gap-4 mb-10 pb-4 border-b-2 border-blue-900/60">
+      <div>
+        <span class="font-pixel text-[10px] text-sky-400 tracking-wider uppercase">Archives // 03</span>
+        <h2 class="font-pixel text-2xl sm:text-3xl text-white mt-1">MY WORLD / WORK & INTERESTS</h2>
+        <p class="text-slate-400 text-sm mt-1">Artifacts, scripts, athletic journals, and creative computing quests.</p>
+      </div>
+
+      <!-- Charmander Interactive Companion (Work Zone) -->
+      <div id="pokemon-charmander" class="pokemon-companion-box" title="Click Charmander to ignite tail flames, embers & Flamethrower!">
+        <div class="pokemon-speech font-pixel">Char-char!</div>
+        <div class="pokemon-sprite stage-0">
+          <!-- Retro Pixel Charmander SVG -->
+          <svg viewBox="0 0 64 64" class="w-14 h-14" style="image-rendering: pixelated;">
+            <!-- Tail with animated flame -->
+            <path d="M42,44 Q50,46 52,38 Q48,34 40,40" fill="#ea580c"/>
+            <!-- Tail Flame (Animated) -->
+            <polygon points="52,34 58,26 54,38" fill="#facc15"/>
+            <polygon points="54,32 62,22 56,36" fill="#ef4444"/>
+            <!-- Body & Head -->
+            <rect x="22" y="24" width="22" height="22" rx="5" fill="#f97316"/>
+            <rect x="24" y="16" width="20" height="16" rx="4" fill="#fb923c"/>
+            <!-- Big Blue Eyes -->
+            <rect x="26" y="20" width="4" height="5" fill="#0284c7"/>
+            <rect x="27" y="20" width="2" height="2" fill="#ffffff"/>
+            <rect x="36" y="20" width="4" height="5" fill="#0284c7"/>
+            <rect x="37" y="20" width="2" height="2" fill="#ffffff"/>
+            <!-- Nostrils & Smile -->
+            <rect x="31" y="26" width="1" height="1" fill="#7c2d12"/>
+            <rect x="34" y="26" width="1" height="1" fill="#7c2d12"/>
+            <path d="M29,29 Q33,32 37,29" stroke="#7c2d12" stroke-width="1.5" fill="none"/>
+            <!-- Pale Cream Belly -->
+            <rect x="26" y="32" width="12" height="12" rx="3" fill="#fed7aa"/>
+            <!-- Feet -->
+            <rect x="22" y="46" width="6" height="5" fill="#ea580c"/>
+            <rect x="34" y="46" width="6" height="5" fill="#ea580c"/>
+          </svg>
+        </div>
+        <div class="pokemon-dots">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+        <span class="text-[8px] font-pixel text-orange-400 mt-1">CHARMANDER • LVL 14</span>
+      </div>
+    </div>
+
+    <!-- Filter Cartridge Buttons -->
+    <div class="flex flex-wrap items-center gap-2 mb-8">
+      <button class="cartridge-filter-btn pixel-btn text-xs active" data-category="all">All Realms</button>
+      <button class="cartridge-filter-btn pixel-btn text-xs" data-category="film">🎬 Filmmaking</button>
+      <button class="cartridge-filter-btn pixel-btn text-xs" data-category="acting">🎭 Theatre & Acting</button>
+      <button class="cartridge-filter-btn pixel-btn text-xs" data-category="badminton">🏸 Badminton Court</button>
+      <button class="cartridge-filter-btn pixel-btn text-xs" data-category="tech">💻 Creative Tech</button>
+    </div>
+
+    <!-- Showcase Cards Grid -->
+    <div id="showcase-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <!-- Card 1: Film -->
+      <div class="showcase-card pixel-card p-6" data-category="film">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono text-sky-400 bg-blue-950 px-2 py-0.5 rounded border border-blue-800">
+            SHORT FILM CONCEPT
+          </span>
+          <span class="text-xs font-mono text-slate-400">Writer & Director</span>
+        </div>
+        <h3 class="font-pixel text-base text-white mb-2">Echoes in the Rain</h3>
+        <p class="text-xs text-slate-300 font-sans leading-relaxed mb-4">
+          A poignant exploration of two strangers sharing an umbrella at a desolate bus stop, unraveling shared grief and the gentle courage to heal.
+        </p>
+        <div class="flex items-center justify-between pt-3 border-t border-slate-800">
+          <div class="flex gap-1.5">
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Screenplay</span>
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Drama</span>
+          </div>
+          <button class="view-script-btn pixel-btn text-[11px] py-1 px-2.5 bg-blue-900 border-sky-400" data-id="film-1">
+            📜 Read Excerpt
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 2: Theatre -->
+      <div class="showcase-card pixel-card p-6" data-category="acting">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono text-indigo-400 bg-indigo-950 px-2 py-0.5 rounded border border-indigo-800">
+            THEATRICAL MONOLOGUE
+          </span>
+          <span class="text-xs font-mono text-slate-400">Stage Actor</span>
+        </div>
+        <h3 class="font-pixel text-base text-white mb-2">The Midnight Monologue</h3>
+        <p class="text-xs text-slate-300 font-sans leading-relaxed mb-4">
+          A one-act dramatic monologue about the terror and exhilaration of stepping into the unknown, performed under a lone harsh spotlight.
+        </p>
+        <div class="flex items-center justify-between pt-3 border-t border-slate-800">
+          <div class="flex gap-1.5">
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Stage Theatre</span>
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Vulnerability</span>
+          </div>
+          <button class="view-script-btn pixel-btn text-[11px] py-1 px-2.5 bg-indigo-900 border-indigo-400" data-id="theatre-1">
+            🎭 View Monologue
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 3: Badminton -->
+      <div class="showcase-card pixel-card p-6" data-category="badminton">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono text-amber-400 bg-amber-950 px-2 py-0.5 rounded border border-amber-800">
+            ATHLETIC JOURNAL
+          </span>
+          <span class="text-xs font-mono text-slate-400">Competitive Player</span>
+        </div>
+        <h3 class="font-pixel text-base text-white mb-2">The 21st Point</h3>
+        <p class="text-xs text-slate-300 font-sans leading-relaxed mb-4">
+          Reflections on court psychology, deuce matches at 20-20, and the profound silence of instinct before the final smash down the sideline.
+        </p>
+        <div class="flex items-center justify-between pt-3 border-t border-slate-800">
+          <div class="flex gap-1.5">
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Match Tactics</span>
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Discipline</span>
+          </div>
+          <button class="view-script-btn pixel-btn text-[11px] py-1 px-2.5 bg-amber-900 border-amber-400" data-id="sports-1">
+            🏸 Read Journal
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 4: Tech / CSE -->
+      <div class="showcase-card pixel-card p-6" data-category="tech">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded border border-emerald-800">
+            CREATIVE COMPUTING
+          </span>
+          <span class="text-xs font-mono text-slate-400">CS Student & Creator</span>
+        </div>
+        <h3 class="font-pixel text-base text-white mb-2">Pixel Universe Engine</h3>
+        <p class="text-xs text-slate-300 font-sans leading-relaxed mb-4">
+          A handcrafted 2D retro canvas world with living silhouettes, particle meteors, and synthesized 8-bit audio engineered for this portfolio.
+        </p>
+        <div class="flex items-center justify-between pt-3 border-t border-slate-800">
+          <div class="flex gap-1.5">
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Web Canvas</span>
+            <span class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded">Web Audio</span>
+          </div>
+          <button class="view-script-btn pixel-btn text-[11px] py-1 px-2.5 bg-emerald-900 border-emerald-400" data-id="code-1">
+            💻 Explore Logic
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Script / Showcase Modal Viewer -->
+  <div id="script-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="pixel-card max-w-2xl w-full p-6 max-h-[85vh] flex flex-col bg-slate-900 border-2 border-sky-400">
+      <div class="flex items-start justify-between pb-3 mb-4 border-b border-blue-900">
+        <div>
+          <span id="modal-category" class="font-pixel text-[9px] text-sky-400 uppercase tracking-widest"></span>
+          <h3 id="modal-title" class="font-pixel text-lg text-white mt-1"></h3>
+          <p id="modal-role" class="text-xs font-mono text-amber-300/80 mt-0.5"></p>
+        </div>
+        <button id="modal-close-btn" class="pixel-btn text-xs py-1 px-2.5 bg-red-950 border-red-500 text-red-200">
+          ✕ CLOSE
+        </button>
+      </div>
+      
+      <div class="overflow-y-auto flex-1 pr-2">
+        <pre id="modal-body" class="whitespace-pre-wrap font-mono text-xs sm:text-sm text-slate-200 leading-relaxed bg-slate-950/80 p-4 rounded border border-blue-900/60"></pre>
+      </div>
+
+      <div class="pt-4 mt-3 border-t border-blue-950 flex justify-end">
+        <span class="text-[10px] font-mono text-slate-400">Press ESC or click Outside to dismiss</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       SECTION 5: GUESTBOOK ("LEAVE YOUR THOUGHTS, STORIES, OR A PIECE OF YOURSELF")
+       ========================================================================= -->
+  <section id="guestbook" class="portfolio-section py-16 px-4 max-w-6xl mx-auto">
+    
+    <!-- Section Header with Companion -->
+    <div class="flex items-center justify-between flex-wrap gap-4 mb-10 pb-4 border-b-2 border-blue-900/60">
+      <div>
+        <span class="font-pixel text-[10px] text-sky-400 tracking-wider uppercase">Living Registry // 04</span>
+        <h2 class="font-pixel text-2xl sm:text-3xl text-white mt-1">THE LIVING GUESTBOOK</h2>
+        <p class="text-slate-400 text-sm mt-1">"Leave your thoughts, stories, or a little piece of yourself."</p>
+      </div>
+
+      <!-- Meowth Interactive Companion (Guestbook Zone) -->
+      <div id="pokemon-meowth" class="pokemon-companion-box" title="Click Meowth for Pay Day gold coins & Team Rocket blast-off!">
+        <div class="pokemon-speech font-pixel">Meowth, that's right!</div>
+        <div class="pokemon-sprite stage-0">
+          <!-- Retro Pixel Meowth SVG -->
+          <svg viewBox="0 0 64 64" class="w-14 h-14" style="image-rendering: pixelated;">
+            <!-- Curled Tail -->
+            <path d="M44,46 Q54,42 50,30 Q46,28 42,34" fill="#fef3c7"/>
+            <!-- Body -->
+            <rect x="22" y="28" width="20" height="20" rx="4" fill="#fef3c7"/>
+            <!-- Head & Big Oval Ears with Black rims -->
+            <rect x="20" y="16" width="24" height="18" rx="4" fill="#fef3c7"/>
+            <polygon points="16,14 24,18 20,24" fill="#1e293b"/>
+            <polygon points="18,16 23,19 20,23" fill="#f43f5e"/>
+            <polygon points="48,14 40,18 44,24" fill="#1e293b"/>
+            <polygon points="46,16 41,19 44,23" fill="#f43f5e"/>
+            <!-- Koban Gold Amulet Coin on Forehead -->
+            <ellipse cx="32" cy="18" rx="4" ry="6" fill="#facc15" stroke="#b45309" stroke-width="1"/>
+            <!-- Eyes & Sassy Whiskers -->
+            <ellipse cx="26" cy="24" rx="3" ry="4" fill="#0f172a"/>
+            <rect x="27" y="22" width="1" height="2" fill="#ffffff"/>
+            <ellipse cx="38" cy="24" rx="3" ry="4" fill="#0f172a"/>
+            <rect x="39" y="22" width="1" height="2" fill="#ffffff"/>
+            <!-- Whiskers -->
+            <line x1="12" y1="23" x2="20" y2="24" stroke="#0f172a" stroke-width="1.5"/>
+            <line x1="12" y1="27" x2="20" y2="26" stroke="#0f172a" stroke-width="1.5"/>
+            <line x1="52" y1="23" x2="44" y2="24" stroke="#0f172a" stroke-width="1.5"/>
+            <line x1="52" y1="27" x2="44" y2="26" stroke="#0f172a" stroke-width="1.5"/>
+            <!-- Fangs & Smirk -->
+            <polygon points="29,29 32,32 35,29" fill="#0f172a"/>
+            <polygon points="29,29 30,31 31,29" fill="#ffffff"/>
+            <polygon points="33,29 34,31 35,29" fill="#ffffff"/>
+            <!-- Paws -->
+            <rect x="22" y="48" width="6" height="4" fill="#78350f"/>
+            <rect x="36" y="48" width="6" height="4" fill="#78350f"/>
+          </svg>
+        </div>
+        <div class="pokemon-dots">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+        <span class="text-[8px] font-pixel text-amber-400 mt-1">MEOWTH • LVL 15</span>
+      </div>
+    </div>
+
+    <!-- Guestbook Layout: Submission Form + Live Entries List -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left 5 Cols: Interactive Submission Form -->
+      <div class="lg:col-span-5 pixel-card p-6 border-sky-600/70">
+        <h3 class="font-pixel text-sm text-white mb-1 flex items-center gap-2">
+          <span>✍️</span> Etch Your Note
+        </h3>
+        <p class="text-xs text-slate-400 font-sans mb-5">
+          Share a thought, advice, or creative story. Persisted permanently in this world.
+        </p>
+
+        <form id="guestbook-form" class="space-y-4">
+          
+          <!-- Name Input -->
+          <div>
+            <label for="guest-name" class="block font-retro text-xs text-sky-300 mb-1">Your Name / Alias</label>
+            <input 
+              type="text" 
+              id="guest-name" 
+              required
+              placeholder="e.g. Maya Chen" 
+              class="w-full px-3 py-2 bg-slate-950/80 border border-blue-900 rounded font-sans text-sm text-white focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
+            >
+          </div>
+
+          <!-- Role / Affiliation Input -->
+          <div>
+            <label for="guest-role" class="block font-retro text-xs text-sky-300 mb-1">Who Are You? (Optional)</label>
+            <input 
+              type="text" 
+              id="guest-role" 
+              placeholder="e.g. Fellow Storyteller, CSE Batchmate" 
+              class="w-full px-3 py-2 bg-slate-950/80 border border-blue-900 rounded font-sans text-sm text-white focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
+            >
+          </div>
+
+          <!-- Choose Avatar -->
+          <div>
+            <label class="block font-retro text-xs text-sky-300 mb-1.5">Pick Your Companion Sigil</label>
+            <div class="grid grid-cols-4 gap-2">
+              <button type="button" class="avatar-select-btn selected pixel-btn text-base py-1.5 px-1 bg-slate-900 border-blue-800" data-avatar="star" title="Star">⭐</button>
+              <button type="button" class="avatar-select-btn pixel-btn text-base py-1.5 px-1 bg-slate-900 border-blue-800" data-avatar="heart" title="Heart">💖</button>
+              <button type="button" class="avatar-select-btn pixel-btn text-base py-1.5 px-1 bg-slate-900 border-blue-800" data-avatar="feather" title="Feather">🪶</button>
+              <button type="button" class="avatar-select-btn pixel-btn text-base py-1.5 px-1 bg-slate-900 border-blue-800" data-avatar="dog" title="Dog">🐶</button>
+              <button type="button" class="avatar-select-btn pixel-btn text-base py-1.5 px-1 bg-slate-900 border-blue-800" data-avatar="cat" title="Cat">🐱</button>
+              <button type="button" class="avatar-select-btn pixel-btn text-base py-1.5 px-1 bg-slate-900 border-blue-800" data-avatar="potion" title="Potion">🧪</button>
+              <button type="button" class="avatar-select-btn pixel-btn text-base py-1.5 px-1 bg-slate-900 border-blue-800" data-avatar="controller" title="Gameboy">🎮</button>
+              <button type="button" class="avatar-select-btn pixel-btn text-base py-1.5 px-1 bg-slate-900 border-blue-800" data-avatar="shuttlecock" title="Shuttlecock">🏸</button>
+            </div>
+          </div>
+
+          <!-- Mood Selector -->
+          <div>
+            <label class="block font-retro text-xs text-sky-300 mb-1.5">Mood Stamp</label>
+            <div class="flex flex-wrap gap-1.5">
+              <button type="button" class="mood-select-btn selected text-[10px] font-mono px-2.5 py-1 rounded bg-blue-950 border border-blue-700 text-blue-200" data-mood="Dreamer">Dreamer</button>
+              <button type="button" class="mood-select-btn text-[10px] font-mono px-2.5 py-1 rounded bg-blue-950 border border-blue-700 text-blue-200" data-mood="Inspired">Inspired</button>
+              <button type="button" class="mood-select-btn text-[10px] font-mono px-2.5 py-1 rounded bg-blue-950 border border-blue-700 text-blue-200" data-mood="Storyteller">Storyteller</button>
+              <button type="button" class="mood-select-btn text-[10px] font-mono px-2.5 py-1 rounded bg-blue-950 border border-blue-700 text-blue-200" data-mood="Court Buddy">Court Buddy</button>
+            </div>
+          </div>
+
+          <!-- Message Textarea -->
+          <div>
+            <label for="guest-message" class="block font-retro text-xs text-sky-300 mb-1">Your Story or Message</label>
+            <textarea 
+              id="guest-message" 
+              required
+              rows="4" 
+              placeholder="Leave a heartfelt message, memory, or encouragement for Piyush..."
+              class="w-full px-3 py-2 bg-slate-950/80 border border-blue-900 rounded font-sans text-sm text-white focus:outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="pixel-btn pixel-btn-accent w-full text-xs py-2.5">
+            <span>✨</span> Etch Note Into History
+          </button>
+
+          <p id="guestbook-status-msg" class="hidden text-xs font-mono text-emerald-400 text-center"></p>
+        </form>
+      </div>
+
+      <!-- Right 7 Cols: Live Entries Board -->
+      <div class="lg:col-span-7 space-y-4">
+        <div class="flex items-center justify-between pb-2 border-b border-blue-950">
+          <h3 class="font-pixel text-xs text-sky-300 uppercase">Cosmic Messages</h3>
+          <span class="text-xs font-mono text-slate-400">Saved in Local Universe</span>
+        </div>
+
+        <!-- Rendered Entries List -->
+        <div id="guestbook-entries-list" class="space-y-3.5 max-h-[640px] overflow-y-auto pr-1.5">
+          <!-- Populated dynamically by guestbook.js -->
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================================================================
+       SECTION 6: CONTACT (TRANSMIT A SIGNAL)
+       ========================================================================= -->
+  <section id="contact" class="portfolio-section py-16 px-4 max-w-6xl mx-auto">
+    
+    <!-- Section Header with Companion -->
+    <div class="flex items-center justify-between flex-wrap gap-4 mb-10 pb-4 border-b-2 border-blue-900/60">
+      <div>
+        <span class="font-pixel text-[10px] text-sky-400 tracking-wider uppercase">Frequencies // 05</span>
+        <h2 class="font-pixel text-2xl sm:text-3xl text-white mt-1">TRANSMIT A SIGNAL</h2>
+        <p class="text-slate-400 text-sm mt-1">Let's create, collaborate on a film, act together, or play a match.</p>
+      </div>
+
+      <!-- Togepi Interactive Companion (Contact Zone - Peeks from egg, Pidgeot rescue finale!) -->
+      <div id="pokemon-togepi" class="pokemon-companion-box" title="Click Togepi: mostly hides in egg, peeks out, and Pidgeot swoops in!">
+        <div class="pokemon-speech font-pixel">Togepriii~ 🥚</div>
+        <div class="pokemon-sprite stage-0">
+          <!-- Retro Pixel Togepi SVG (Hiding inside egg) -->
+          <svg viewBox="0 0 64 64" class="w-14 h-14" style="image-rendering: pixelated;">
+            <!-- Crown Spikes on head -->
+            <polygon points="26,14 28,6 30,14" fill="#fef3c7"/>
+            <polygon points="31,14 34,4 37,14" fill="#fef3c7"/>
+            <polygon points="38,14 41,8 43,14" fill="#fef3c7"/>
+            <!-- Togepi Head -->
+            <ellipse cx="34" cy="18" rx="10" ry="8" fill="#fef3c7"/>
+            <!-- Eyes & Cheerful Smile -->
+            <ellipse cx="30" cy="18" rx="1.5" ry="2.5" fill="#0f172a"/>
+            <ellipse cx="38" cy="18" rx="1.5" ry="2.5" fill="#0f172a"/>
+            <path d="M32,22 Q34,24 36,22" stroke="#ef4444" stroke-width="1.2" fill="none"/>
+            <ellipse cx="27" cy="20" rx="1.5" ry="1" fill="#f87171"/> <!-- Blush -->
+            <ellipse cx="41" cy="20" rx="1.5" ry="1" fill="#f87171"/>
+            <!-- Togepi Speckled Egg Shell -->
+            <path d="M20,26 L24,22 L28,26 L34,20 L40,26 L44,22 L48,26 Q52,38 48,48 Q40,56 34,56 Q28,56 20,48 Q16,38 20,26 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+            <!-- Geometric Triangle Patterns on Egg -->
+            <polygon points="25,32 30,34 26,38" fill="#ef4444"/>
+            <polygon points="38,30 43,32 40,36" fill="#3b82f6"/>
+            <polygon points="32,40 37,42 34,46" fill="#ef4444"/>
+            <polygon points="24,44 28,45 25,48" fill="#3b82f6"/>
+            <!-- Tiny Feet Peeking -->
+            <ellipse cx="28" cy="56" rx="3" ry="2" fill="#fef3c7"/>
+            <ellipse cx="40" cy="56" rx="3" ry="2" fill="#fef3c7"/>
+          </svg>
+        </div>
+        <div class="pokemon-dots">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+        <span class="text-[8px] font-pixel text-rose-300 mt-1">TOGEPI • LVL 5</span>
+      </div>
+    </div>
+
+    <!-- Contact Grid: Direct Cards + Dispatch Terminal -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left 5 Cols: Direct Contact Details -->
+      <div class="lg:col-span-5 space-y-4">
+        
+        <!-- Email Card -->
+        <div class="pixel-card p-5 border-sky-500/80">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-xs font-mono text-sky-400">PRIMARY FREQUENCY</span>
+            <span class="text-lg">✉️</span>
+          </div>
+          <h4 class="font-pixel text-xs text-white mb-1">DIRECT EMAIL</h4>
+          <p class="font-mono text-sm text-sky-200 break-all mb-4">piyushg152007@gmail.com</p>
+          <div class="flex gap-2">
+            <button id="copy-email-btn" class="pixel-btn text-[11px] py-1 px-3 bg-slate-900 border-sky-400">
+              📋 Copy Address
+            </button>
+            <a href="mailto:piyushg152007@gmail.com" class="pixel-btn pixel-btn-accent text-[11px] py-1 px-3">
+              🚀 Open Mail
+            </a>
+          </div>
+        </div>
+
+        <!-- Phone Card -->
+        <div class="pixel-card p-5 border-emerald-500/80">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-xs font-mono text-emerald-400">DIRECT VOICE LINE</span>
+            <span class="text-lg">📞</span>
+          </div>
+          <h4 class="font-pixel text-xs text-white mb-1">PHONE NUMBER</h4>
+          <p class="font-mono text-sm text-emerald-200 mb-4">+91 9256803722</p>
+          <div class="flex gap-2">
+            <button id="copy-phone-btn" class="pixel-btn text-[11px] py-1 px-3 bg-slate-900 border-emerald-400">
+              📋 Copy Phone
+            </button>
+            <a href="tel:9256803722" class="pixel-btn text-[11px] py-1 px-3 bg-emerald-900 border-emerald-400 text-white">
+              📞 Dial Direct
+            </a>
+          </div>
+        </div>
+
+        <!-- Academic Campus Card -->
+        <div class="pixel-card p-5 border-amber-600/80">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-xs font-mono text-amber-400">PHYSICAL RADAR</span>
+            <span class="text-lg">🏛️</span>
+          </div>
+          <h4 class="font-pixel text-xs text-white mb-1">CAMPUS BASE</h4>
+          <p class="text-xs text-slate-300 font-sans leading-relaxed">
+            JECRC University, Jaipur, Rajasthan, India.<br>
+            <span class="font-mono text-amber-300/80 text-[11px]">1st-Year B.Tech CSE Core • Class of 2030</span>
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Right 7 Cols: Dispatch Message Terminal -->
+      <div class="lg:col-span-7 pixel-card p-6 border-blue-700/80">
+        <h3 class="font-pixel text-sm text-white mb-1 flex items-center gap-2">
+          <span>📡</span> Dispatch a Message
+        </h3>
+        <p class="text-xs text-slate-400 font-sans mb-5">
+          Send a fast transmission directly to Piyush's inbox.
+        </p>
+
+        <form id="contact-form" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="contact-name" class="block font-retro text-xs text-sky-300 mb-1">Your Name</label>
+              <input 
+                type="text" 
+                id="contact-name" 
+                required
+                placeholder="Name or handle" 
+                class="w-full px-3 py-2 bg-slate-950/80 border border-blue-900 rounded font-sans text-sm text-white focus:outline-none focus:border-sky-400"
+              >
+            </div>
+            <div>
+              <label for="contact-email" class="block font-retro text-xs text-sky-300 mb-1">Your Email</label>
+              <input 
+                type="email" 
+                id="contact-email" 
+                required
+                placeholder="you@domain.com" 
+                class="w-full px-3 py-2 bg-slate-950/80 border border-blue-900 rounded font-sans text-sm text-white focus:outline-none focus:border-sky-400"
+              >
+            </div>
+          </div>
+
+          <div>
+            <label for="contact-topic" class="block font-retro text-xs text-sky-300 mb-1">Topic / Realm</label>
+            <select id="contact-topic" class="w-full px-3 py-2 bg-slate-950/80 border border-blue-900 rounded font-sans text-sm text-white focus:outline-none focus:border-sky-400">
+              <option value="film">🎬 Filmmaking & Screenplay Collaboration</option>
+              <option value="theatre">🎭 Theatre, Acting & Monologue Project</option>
+              <option value="badminton">🏸 Badminton Match or Training</option>
+              <option value="tech">💻 Software & CSE Tech Collaboration</option>
+              <option value="chat">☕ Friendly Chat & Connection</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="contact-msg" class="block font-retro text-xs text-sky-300 mb-1">Message Content</label>
+            <textarea 
+              id="contact-msg" 
+              required
+              rows="4" 
+              placeholder="What would you like to build or explore together?..." 
+              class="w-full px-3 py-2 bg-slate-950/80 border border-blue-900 rounded font-sans text-sm text-white focus:outline-none focus:border-sky-400"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="pixel-btn pixel-btn-gold w-full text-xs py-2.5">
+            <span>🚀</span> Transmit Message to Piyush
+          </button>
+
+          <p id="contact-status-msg" class="hidden text-xs font-mono text-emerald-400 text-center pt-2"></p>
+        </form>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================================================================
+       RETRO GAME FOOTER
+       ========================================================================= -->
+  <footer class="mt-20 border-t-2 border-blue-900/80 bg-slate-950 py-10 px-4">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+      
+      <div>
+        <h4 class="font-pixel text-xs text-white">PIYUSH GURJAR</h4>
+        <p class="text-xs font-mono text-sky-400/80 mt-1">
+          Actor • Filmmaker • Storyteller • Writer • Badminton Player • CSE Student
+        </p>
+        <p class="text-[11px] font-mono text-slate-500 mt-1">
+          1st-Year B.Tech CSE Core • JECRC University, Class of 2030
+        </p>
+      </div>
+
+      <!-- Quick Meteor Navigation Links -->
+      <div class="flex flex-wrap items-center gap-3">
+        <button class="nav-pixel-btn text-xs meteor-trigger" data-section="home">Home</button>
+        <button class="nav-pixel-btn text-xs meteor-trigger" data-section="about">About</button>
+        <button class="nav-pixel-btn text-xs meteor-trigger" data-section="skills">Skills</button>
+        <button class="nav-pixel-btn text-xs meteor-trigger" data-section="work">Work</button>
+        <button class="nav-pixel-btn text-xs meteor-trigger" data-section="guestbook">Guestbook</button>
+        <button class="nav-pixel-btn text-xs meteor-trigger" data-section="contact">Contact</button>
+      </div>
+
+    </div>
+
+    <div class="max-w-6xl mx-auto mt-8 pt-6 border-t border-slate-900 text-center text-xs font-mono text-slate-600">
+      Crafted as a living pixel world • Under the starry Rajasthan skies • © 2026 Piyush Gurjar
+    </div>
+  </footer>
+
+  <!-- Application Core Script (Zero-CORS bundle for universal compatibility) -->
+  <script src="js/bundle.js"></script>
+</body>
+</html>
